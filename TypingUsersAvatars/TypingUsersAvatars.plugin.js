@@ -77,7 +77,8 @@ module.exports = !global.ZeresPluginLibrary ? class {
     const { React, UserStore, RelationshipStore, UserStatusStore, Strings } = DiscordModules;
     const AssetUtils = WebpackModules.getByProps("getUserBannerURL");
     const Avatar = WebpackModules.getByProps('AnimatedAvatar');
-    const VoiceUserSummary = WebpackModules.findByDisplayName("VoiceUserSummaryItem")
+    const AvatarSizes = WebpackModules.getByKeys('AnimatedAvatar');
+    const VoiceUserSummary = WebpackModules.findByDisplayName("VoiceUserSummaryItem");
 
     class AvatarComponent extends React.Component {
         render() {
@@ -86,7 +87,7 @@ module.exports = !global.ZeresPluginLibrary ? class {
             return React.createElement(Avatar.default, {
                 src: user?.guildMemberAvatars[guildId] ? guildAvatar : user.getAvatarURL(),
                 status: status,
-                size: Avatar.Sizes.SIZE_16,
+                size: AvatarSizes.SIZE_16,
                 onClick() {
                     Popouts.showUserPopout(document.getElementById(`typing-user-${user.id}`), user)
                 }
